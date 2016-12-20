@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "---\ntitle: \"Reproducible Research: Peer Assessment 1\"\nauthor: \"Don Hescht\"\noutput: \n  html_document:\n    keep_md: true\n---\n\n```{r setup, include=FALSE, message=F, warning=F}\nknitr::opts_chunk$set(echo = TRUE)\noptions(digits=2)\noptions(scipen=999)\nlibrary(lubridate)\nlibrary(dplyr)\nlibrary(ggplot2)\n```\n## Loading and preprocessing the data\n```{r , message=F, warning=F}\nact.df <- read.csv(\"activity.csv\", stringsAsFactors=FALSE)\nact.df$date <- as.Date(act.df$date)\n```\n\n## What is mean total number of steps taken per day?\n```{r, message=F, warning=F}\nact.total.day <- act.df %>% group_by(date) %>% summarise(total=sum(steps,na.rm=TRUE))\nact.mean <- mean(act.total.day$total,na.rm=TRUE)\nact.median <- median(act.total.day$total,na.rm=TRUE)\n\ng <- ggplot(act.total.day, aes(total)) +  geom_histogram()\ng <- g + xlab(\"Steps\") + ylab(\"Frequency\") + ggtitle(\"Total Steps Per Day Histogram \")\ng\n```\n\nThe **mean steps per day = `r round(act.mean,0)`** while the **median steps per day = `r round(act.median,0)`**. \n\n## What is the average daily activity pattern?\n```{r, message=F, warning=F}\nact.mean.interval <- act.df %>% group_by(interval) %>% summarise(average=mean(steps,na.rm=TRUE))\nact.max.interval <- max(act.mean.interval$average,na.rm=TRUE)\n\ng <- ggplot(act.mean.interval, aes(interval, average)) +  geom_line()\ng <- g + xlab(\"Interval\") + ylab(\"Average Steps\") + ggtitle(\"Average Steps Per Interval Across All Days\")\ng\n```\n\nThe **max average steps (`r round(act.max.interval,0)`)** occurred **at interval `r act.mean.interval[which.max( as.double(act.mean.interval$average)),1] `**.\n\n## Imputing missing values\nThe activity dataset **contains `r nrow(act.df[act.df$steps=='NA',])` NA rows** of `r nrow(act.df)` total rows. To make a complete data set the **NAs for a given interval will be replaced with the average value for that interval across all days**.\n```{r, message=F, warning=F}\nact.df$steps[is.na(act.df$steps)] <- act.mean.interval$average[match(act.df$interval[is.na(act.df$steps)], act.mean.interval$interval)]\n# Create a total \nact.nona.total.day <- act.df %>% group_by(date) %>% summarise(total=sum(steps,na.rm=TRUE))\nact.nona.mean <- mean(act.nona.total.day$total,na.rm=TRUE)\nact.nona.median <- median(act.nona.total.day$total,na.rm=TRUE)\n\ng <- ggplot(act.nona.total.day, aes(total)) +  geom_histogram()\ng <- g + xlab(\"Steps\") + ylab(\"Frequency\") + ggtitle(\"Total Steps Per Day Histogram \")\ng\n```\n\nThe **NA corrected histogram has less zeros** as these NA zero values are now distributed in other intervals around averages for the intervals.  The **mean steps per day before NA correction = `r round(act.mean,0)`** and **after = `r round(act.nona.mean,0)`**.  The **median steps per day before NA correction =  `r round(act.median,0)`** and **after = `r round(act.nona.median,0)`**. \n\n## Are there differences in activity patterns between weekdays and weekends?\n\n```{r,message=F, warning=F}\nweekend <- c(\"weekend\",\"weekday\",\"weekday\",\"weekday\",\"weekday\",\"weekday\", \"weekend\")\nact.df$weekend <- as.factor(weekend[wday(act.df$date)])\nact.weekday.mean.day <- act.df %>% group_by(interval,weekend) %>% summarise(average=mean(steps,na.rm=TRUE))\ng <- ggplot(act.weekday.mean.day, aes(interval, average)) +  geom_line() + facet_wrap(~weekend, nrow=2)\ng <- g + xlab(\"Interval\") + ylab(\"Average Steps\") + ggtitle(\"Average Steps Per Interval Weekend Versus Weekday\")\ng\n",
+    "created" : 1481984279918.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "552622201",
+    "id" : "303F1558",
+    "lastKnownWriteTime" : 1482243466,
+    "last_content_update" : 1482243466063,
+    "path" : "~/Documents/Coursera/RepData_PeerAssessment1/PA1_template.Rmd",
+    "project_path" : "PA1_template.Rmd",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

@@ -1,0 +1,255 @@
+3 - 5 + c(-1,1) * qt(.95,18) * sp * sqrt(1/10+1/10)
+3 - 5 + c(-1,1) * qt(.975,18) * sp * sqrt(1/10+1/10)
+sp<- sqrt((9*0.68^2 + 9*0.6^2)/18)
+sp
+qq
+qt
+?qt
+pnorm
+?pnorm
+uv = sqrt((2^2 + 0.5^2)/100)
+uv
+(6-4) + c(-1,1) * uv
+TM = -3
+PM = 1
+TSTD = 1.5
+PSTD = 1.8
+df <- (1.5^2/9 + 1.8^2/9 )^2
+df
+df2 <- ((1.5^2/9)^2/8) + ((1.8^2/9)^2/8)
+df2
+df/df2
+df = df/df2
+TM-PM - c(-1,1)*qt(.95,df)*((1.5^2/9 + 1.8^2/9 )^0.5)
+TM-PM + c(-1,1)*qt(.95,df)*((1.5^2/9 + 1.8^2/9 )^0.5)
+TM-PM + c(-1,1)*qt(.95,16)*((1.5^2/9 + 1.8^2/9 )^0.5)
+Sp = (9*0.6 + 9*.68)/18
+Sp
+3-5 + c(-1,1) * qt(0.97, 18) * Sp * (2/10)^0.5
+3-5 + c(-1,1) * qt(0.975, 18) * Sp * (2/10)^0.5
+Sp = sqrt(Sp)
+3-5 + c(-1,1) * qt(0.975, 18) * Sp * (2/10)^0.5
+rexp(20,0.5)
+?pnorm
+BL <- {140,138,150,148,135}
+BL <- c(140,138,150,148,135)
+BL
+W2 <-c(132,135,151,146,130)
+B1 - W2
+BL - W2
+mean(BL-W2)
+MD = mean(BL-W2)
+MBL <- mean(BL)
+MW2 <- mean(W2)
+MW2
+?pt
+var(MD)
+MD
+BLW2 <- BL-W2
+var(BLW2)
+sqrt(var(BLW2))
+qt(0.975, 8,)
+2.3*1.12
+t.test(BLW2)
+t.test(BL, W2, paired = TRUE)
+?t.test
+t.test(BL, W2, paired = TRUE, alternative("two.sided"))
+t.test(BL, W2, paired = TRUE, alternative=("two.sided"))
+?qt
+m = 1100
+sd = 30
+?t.test
+qt(0.95, 8, 30)
+m + c(-1,1) * qt(0.95, 8, 30)
+m + c(-1,1) * qt(0.90, 8, 30)
+m + c(-1,1) * qt(0.90, 9, 30)
+30/3
+m + c(-1,1) * qt(0.90, 8, 10)
+m + c(-1,1) * qt(0.95, 8, 10)
+m + c(-1,1) * qt(0.975, 8, 10)
+choose(4,3) * 0.5^4 + choose(4,4) * 0.5^4
+pbinom(2,size=4, prob=0.5, lower.tail = FALSE)
+10/1787
+?ppois
+0.01*1787
+ppois(9,17.87, lower.tail = FALSE)
+ppois(17.87,9, lower.tail = FALSE)
+ppois(18,9, lower.tail = FALSE)
+ppois(9,18, lower.tail = FALSE)
+?poisson.test()
+ppois(9,17.87, lower.tail = FALSE)
+ppois(0.01,10/1787, lower.tail = FALSE)
+?ppois(,, lower.tail = FALSE)
+ppois(9/100,10/1787, lower.tail = FALSE)
+100*10
+ppois(9/100,10/1787, lower.tail = FALSE)/2
+ppois(10/1787,10/100 lower.tail = FALSE)/2
+ppois(10/1787,10/100, lower.tail = FALSE)/2
+ppois(10/1787,10/100, lower.tail = FALSE)
+ppois(9/1787,10/100, lower.tail = FALSE)
+ppois(9/1787,(10*1787)/100, lower.tail = FALSE)
+ppois(9/1787,1/100, lower.tail = FALSE)
+ppois(9,17.87, lower.tail = FALSE)
+df = ((1.5^2/9)+(1.8^2/9))^2
+df
+dfn = df
+dfd = ((1.5^2/9)^2/ 8) + ((1.8^2/9)^2/ 8)
+dfd
+df = dfn/dfd
+df
+-3 -1 + c(-1,1) * df *(1.5^2 / 9 + 1.8^2/9)^0.5
+z = qnorm(1-0.05)
+z
+0.9*0.04
+0.036/0.01
+3.6^2
+0.9/0.04
+0.9*0.04
+0.036/0.01
+power.t.test(delta=0.01,sd=0.04, sig.level=0.05, power = 0.9)
+power.t.test(delta=0.01,sd=0.04, sig.level=0.05, power = 0.9, alternative="one-sided", type="one-sample")
+power.t.test(delta=0.01,sd=0.04, sig.level=0.05, power = 0.9, alternative="one-sided", type="one.sample")
+power.t.test(delta=0.01,sd=0.04, sig.level=0.05, power = 0.9, alternative="one.sided", type="one.sample")
+power.t.test(delta=0.01,sd=0.04, sig.level=0.05, alternative="one.sided", type="one.sample", n=100)
+df
+n1 <- n2 <- 9#
+x1 <- -3  ##treated#
+x2 <- 1  ##placebo#
+s1 <- 1.5  ##treated#
+s2 <- 1.8  ##placebo#
+spsq <- ( (n1 - 1) * s1^2 + (n2 - 1) * s2^2) / (n1 + n2 - 2)
+spsq
+?pt
+(sqrt(18)*(-3-1))/sqrt(2.745)
+z = (-3-1) / (sqrt(spsq)/sqrt(18))
+z
+2*pnorm(-abs(z))
+2*(1-pnorm(1,mean=-3, sd=(sqrt(spsq)/sqrt(18))))
+2*pt(-abs(z),df=17)
+pt(-abs(z),df=17)
+qnorm(0.95,1100,30, lower.tail = TRUE)
+qnorm(0.975,1100,30, lower.tail = FALSE)
+60+1100
+m = 1100
+s = 30
+df = 8
+error = qt(0.975, df)*30/sqrt(9)
+error
+1100+23
+knitr
+library(knitr)
+knitr
+install.package("schoolmath")
+install.packages("schoolmath")
+gcd(3,4)
+library(schoolmath)
+gcd(3,4)
+3*4
+install.packages("Fraction")
+2
+install.packages("FRACTION")
+library(FRACTION)
+4*4
+12/16
+0.75-.5
+1/ans
+x = 1/0.25
+x
+(3/4) - (1/2)
+(3/4) / (1/2)
+(3/4) % (1/2)
+(3/4) mod (1/2)
+(3/4) %% (1/2)
+(1/4) %% (1/2)
+(1/4) / (1/2)
+(1/4) / (1/3)
+(1/4) / (1/4)
+(1/4) % (1/4)
+(1/4) %% (1/4)
+66/100
+.60 + 0.6
+.60 + 0.06
+.66-.5
+1/0.16
+.25*0.16
+1/0.04
+66/100 - 1/2
+2*66-100
+32/200
+gcd(32,200)
+16/100
+8/50
+4/25
+4/25-1/7
+28-25
+25/(25*7)
+x =25/(25*7)
+x
+1/x
+x = 66
+y = 100
+f <- function (x, y){1/(y/x) + (()(-y) %% x)/(y * ceil(x/y)))}
+f <- function (x, y){1/(y/x) + (()(-y) %% x)/(y * ceil(x/y))}
+f <- function (x, y){1/(y/x) + (((-y) %% x)/(y * ceil(x/y)))}
+f
+f(66/100)
+f(66,100)
+?ceil
+f <- function (x, y){1/(y/x) + (((-y) %% x)/(y * ceiling(x/y)))}
+f(66,100)
+f <- function (x, y){1/ceiling(y/x) + (((-y) %% x)/(y * ceiling(x/y)))}
+f(66,100)
+x = 66
+y = 100
+(((-y) %% x)/(y * ceiling(x/y)))
+(((-y) %% x)
+((-y) %% x)
+(y * ceiling(x/y)
+y * ceiling(x/y)
+1/ceiling(y/x)
+x=7
+y=15
+1/ceiling(y/x)
+x=2, y=15
+x=2; y=15
+1/ceiling(y/x)
+x=66;y=100
+1/ceiling(y/x)
+x=16
+1/ceiling(y/x)
+1/[1]
+1/(1/ceiling(y/x))
+(16/100) - (1/7)
+1/((16/100) - (1/7))
+ceiling(3/4)
+ceiling(4/3)
+3/4
+1/0.75
+ceiling(1/0.75)
+ceiling(1/0.25)
+ceiling(3/4)
+ceiling(4/3)
+ceiling(1/0.75)
+ceiing(1/0.25)
+ceiling(1/0.25)
+1 / ceiling(15/7)
+ceiling(15/7)
+ceiling(4/3)
+4 %% 3
+4*celiing(4/3)
+4*ceiling(4/3)
+15 %% 2
+15 * ceiling(15/2)
+4 %% 3
+4* ceiling(4/3)
+4* ceiling(2)
+15%7
+15%%7
+15*ceiling(15/7)
+-15 %% 7
+82600/16
+12%%13
+getwd()
+getwd()
+library(knitr)
+knit2html("PA1_template.Rmd")
